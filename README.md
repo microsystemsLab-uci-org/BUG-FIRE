@@ -7,26 +7,7 @@ Path planning in unknown, multi-floor buildings presents significant challenges 
 ## Concept
 This repository presents a novel 3D BUG algorithm designed for autonomous navigation in unknown multi-floor indoor environments, with a specific focus on assisting firefighters. The algorithm addresses the unique challenges of three-dimensional path planning in complex building structures where prior map information is unavailable. This implementation guarantees convergence for pedestrian agents or robots navigating to complex goals within multi-story buildings. While the resulting paths may not be optimal due to the absence of prior map information, the algorithm ensures that a viable path to the target is always found, regardless of the building's layout complexity.
 
-The algorithm combines the classic BUG2 algorithm for planar route planning and a custom algorithm to find multi-floor paths to reach the goal floor which then we can implement BUG2. This adapted to work in three-dimensional spaces with multiple floors.
-
-## Algorithm Features
-
-- **3D Path Planning**: Navigate through unknown multi-story buildings with complex floor layouts.
-- **Obstacle Avoidance**: Efficiently maneuver around obstacles on each floor.
-- **Floor Transitions**: Seamlessly plan paths that involve changing floors via staircases or elevators.
-- **Monte Carlo Simulation**: Includes a robust testing framework to evaluate algorithm performance across various scenarios.
-- **Visualization**: 3D plotting capabilities to visualize the environment, obstacles, and planned paths.
-
-## Environment
-
-The algorithm is designed and tested in a simulated environment (with Matlab) based on the Engineering Gateway building at the University of California, Irvine (UCI). The environment includes:
-
-- Multiple floors (2nd, 3rd, and 4th floors)
-- Complex room layouts and corridors
-- Obstacles and impassable areas
-- Inter-floor connections (staircases/elevators)
-
-## Usage
+## BUG-FIRE Simulations - Usage Requirements
 
 * Clone this repository
 * Download Peter's Coke [repository](https://petercorke.com/toolboxes/robotics-toolbox/). The 2D BUG algorithm function and some navigation functions are used from this library.
@@ -36,26 +17,29 @@ git clone https://github.com/petercorke/spatial-math smtb
 git clone https://github.com/petercorke/toolbox-common-matlab commo
 ```
 
-## Monte Carlo Simulation
+## BUG-FIRE Implementation on an AR device
 
-The repository includes a Monte Carlo simulation framework to test the algorithm's performance:
+### Emergency Exit Signs Recognition
 
-- Generates random start and goal points across different floors.
-- Runs multiple iterations to assess success rate, path length, and execution time.
-- Provides statistical analysis of the results.
+#### Dataset
 
-## Visualization
+The emergency exit sign dataset used to train the YOLOv8 model for the Magic Leap 2 implementation is publicly available on Roboflow:
 
-The code includes 3D visualization tools to:
+🔗 https://app.roboflow.com/emergency-exit-signs/emergency-exit-signs-v2/models/emergency-exit-signs-v2/8
 
-- Display the multi-floor environment.
-- Show obstacles and floor layouts.
-- Illustrate planned paths and algorithm execution.
+The dataset includes six classes of exit signs:
+- Right  
+- Left  
+- Left/Right  
+- Straight  
+- Backwards  
+- Straight/Backwards  
 
-## Results
+It also contains synthetic augmentations (occlusions, lighting variations, blur, rotations, etc.) to emulate degraded visibility conditions typical in fire scenarios.
 
-The simulations allow us to play with two different parameters radius vision of the robot and the width of the vision cone of the robot. The simulations result in a 100% convergence in all tested scenarios. This way proposing an indoor algorithm that guarantees a path to the goal even though the initial information is just the start and final coordinates. No pre-map information is known by the agent.
+#### ML Training
 
+### Navigation Environment Implementation into Unity
 
 ## How to Cite
 If you use this work, please cite the following paper:
