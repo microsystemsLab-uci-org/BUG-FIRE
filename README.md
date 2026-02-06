@@ -30,6 +30,11 @@ The algorithm is designed and tested in a simulated environment (with Matlab) ba
 
 * Clone this repository
 * Download Peter's Coke [repository](https://petercorke.com/toolboxes/robotics-toolbox/). The 2D BUG algorithm function and some navigation functions are used from this library.
+```
+git clone https://github.com/petercorke/robotics-toolbox-matlab rtb
+git clone https://github.com/petercorke/spatial-math smtb
+git clone https://github.com/petercorke/toolbox-common-matlab commo
+```
 
 ## Monte Carlo Simulation
 
